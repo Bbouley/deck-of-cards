@@ -12,14 +12,13 @@ function displayCards(){
   var deck = newDeck(); //creates a deck object
   var shuffledCards = shuffleCards(deck);// will shuffle deck object as new variable
 
-  for(var i=0; i < deck.length; i++){
+  for(var i=0; i < shuffledCards.length; i++){
     var card = document.createElement('div'); //creates new div
     card.className = "card";//adds class card to new div
     var cardContainer = document.getElementById('container'); //assigns container section to cardContainer
     cardContainer.appendChild(card);//adds a child(div) to that container section
 
-    card.style.backgroundImage = "url(images/" + shuffledCards[i].Card.rank + "-" + shuffledCards[i].Card.suit + ".png" + ")";//adds card image to the div
-    console.log(card.style.backgroundImage);
+    card.style.backgroundImage = "url(images/" + shuffledCards[i][0].suit + "-" + shuffledCards[i][0].rank + ".png" + ")";//adds card image to the div
   }
 }
 
@@ -61,7 +60,8 @@ function newDeck(){
   return deck;
 }
 
-var deck = newDeck();
+
+
 
 // Shuffles the Deck
 function shuffleCards(cardDeck){
@@ -71,8 +71,10 @@ function shuffleCards(cardDeck){
       var randNum = Math.floor(Math.random()*cardDeck.length);
       var randCard = cardDeck.splice(randNum,1);
       shuffledDeck.push(randCard);
-      count--
+      count--;
     } return shuffledDeck;
 }
 
-console.log(shuffleCards(deck));
+
+
+
