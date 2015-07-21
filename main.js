@@ -1,25 +1,63 @@
-var showCards = document.getElementById("cards"); //references button in html
+activateShowCards();
 
-var reset = document.getElementById("reset");
 
+
+function activateReset() {
 reset.onclick = function(){
   var cardContainer = document.getElementById('container');
   if(cardContainer !== ""){
     cardContainer.innerHTML = "";
-    reset.style.visibility = "hidden";
   }
-}
+  buttonReset();
+  activateShowCards();
+};
+};
 
-showCards.onclick = function(){
-  reset.style.visibility = "visible";
+function activateRedeal(){
+redeal.onclick = function(){
   var cardContainer = document.getElementById('container');// finds card container id.
   cardContainer.innerHTML = ""; //and sets it to "";
   displayCards();
 };
+};
+
+function activateShowCards(){
+  createButton('Deal', 'cards');
+var showCards = document.getElementById('cards');
+showCards.onclick = function(){
+  var cardContainer = document.getElementById('container');// finds card container id.
+  cardContainer.innerHTML = ""; //and sets it to "";
+  displayCards();
+  buttonReset();
+  var reset = createButton('Reset', 'reset');
+  activateReset();
+  var reDeal = createButton('ReDeal', 'redeal');
+  activateRedeal();
+};
+};
+
+function createButton(text, id){
+  var newButton = document.createElement('button');
+  newButton.id = id;
+  newButton.innerHTML = text;
+  var buttonContainer = document.getElementById('controls');
+  buttonContainer.appendChild(newButton);
+}
+
+
+
+function buttonReset (){
+  var buttonContainer = document.getElementById('controls');
+  while(buttonContainer.firstChild){
+    buttonContainer.removeChild(buttonContainer.firstChild);
+  }
+}
+
 
 function displayCards(){
   var deck = newDeck(); //creates a deck object
-  var shuffledCards = shuffleCards(deck);// will shuffle deck object as new variable
+  var numCards = prompt("How many cards do you want?");
+  var shuffledCards = shuffleCards(deck,numCards);// will shuffle deck object as new variable
 
   for(var i=0; i < shuffledCards.length; i++){
     var card = document.createElement('div'); //creates new div
@@ -71,19 +109,16 @@ function newDeck(){
 
 
 
-
 // Shuffles the Deck
-function shuffleCards(cardDeck){
+function shuffleCards(cardDeck, num){
+  var deckCopy = cardDeck;
   var shuffledDeck = [];
   var count = 52;
-    for (var i = 0; i < 52; i++) {
-      var randNum = Math.floor(Math.random()*cardDeck.length);
-      var randCard = cardDeck.splice(randNum,1);
+    for (var i = 0; i < num; i++) {
+      var randNum = Math.floor(Math.random() * deckCopy.length);
+      var randCard = deckCopy.splice(randNum,1);
       shuffledDeck.push(randCard);
       count--;
-    } return shuffledDeck;
+    }
+    return shuffledDeck;
 }
-
-
-
-
