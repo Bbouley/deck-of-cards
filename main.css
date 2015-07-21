@@ -11,6 +11,11 @@ body {
   box-shadow: 5px 5px;
 }
 
+.hidden{
+  visibility: hidden;
+}
+
+
 button {
   padding: 10px;
   font-size: 3em;
