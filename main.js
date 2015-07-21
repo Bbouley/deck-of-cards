@@ -1,9 +1,15 @@
 var showCards = document.getElementById("cards"); //references button in html
+var reset = document.getElementById("reset");
 
-
-
+reset.onclick = function(){
+  var cardContainer = document.getElementById('container');
+  if(cardContainer !== ""){
+    cardContainer.innerHTML = "";
+    reset.style.visibility = "hidden";
+  }
+}
 showCards.onclick = function(){
-
+  reset.style.visibility = "visible";
   var cardContainer = document.getElementById('container');// finds card container id.
   cardContainer.innerHTML = ""; //and sets it to "";
   displayCards();
